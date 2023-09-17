@@ -14,7 +14,7 @@ class CustomButtonWithLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       elevation: 0,
       shape: const RoundedRectangleBorder(
           borderRadius:

@@ -18,7 +18,6 @@ class HomeView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomBadge(),
-                SizedBox(height: 10),
                 QuoteItem(),
               ],
             ),
