@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomButtonWithLoading extends StatelessWidget {
-  const CustomButtonWithLoading({
+class CustomButton extends StatelessWidget {
+  const CustomButton({
     super.key,
     this.onPressed,
     required this.text,
@@ -16,8 +16,9 @@ class CustomButtonWithLoading extends StatelessWidget {
     return MaterialButton(
       elevation: 0,
       minWidth: double.infinity,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.circular(4)),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadiusDirectional.only(
+              topStart: Radius.circular(6), topEnd: Radius.circular(6))),
       height: 44,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       onPressed: onPressed,
@@ -25,9 +26,9 @@ class CustomButtonWithLoading extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w700,
-          color: Color(0xffFFFFFF),
+          fontSize: 26,
+          fontWeight: FontWeight.w400,
+          color: Color(0xff323232),
         ),
       ),
     );

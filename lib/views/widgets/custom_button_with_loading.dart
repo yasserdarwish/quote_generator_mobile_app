@@ -14,12 +14,12 @@ class CustomButtonWithLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      padding: EdgeInsets.symmetric(horizontal: 15),
       elevation: 0,
-      minWidth: double.infinity,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.circular(4)),
-      height: 44,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      shape: const RoundedRectangleBorder(
+          borderRadius:
+              BorderRadiusDirectional.only(bottomStart: Radius.circular(6))),
+      height: 48,
       onPressed: onPressed,
       color: color,
       child: isLoading!
@@ -33,9 +33,9 @@ class CustomButtonWithLoading extends StatelessWidget {
           : Text(
               text,
               style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xffFFFFFF),
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: Color(0xffFBFBFB),
               ),
             ),
     );
