@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quote_generator_mobile_app/constants/colors.dart';
 import 'package:quote_generator_mobile_app/cubits/quote_cubit/quote_cubit.dart';
+import 'package:quote_generator_mobile_app/models/quote_model.dart';
 import 'package:quote_generator_mobile_app/views/widgets/custom_button_with_loading.dart';
 
 class QuoteItem extends StatelessWidget {
@@ -27,7 +28,7 @@ class QuoteItem extends StatelessWidget {
                     contentPadding: EdgeInsets.zero,
                     title: Text(
                       BlocProvider.of<QuoteCubit>(context).quote?.content ??
-                          '"Sorry no quotes"',
+                          'Sorry no quotes',
                       style: const TextStyle(
                           fontSize: 26, fontWeight: FontWeight.w400),
                     ),
@@ -53,7 +54,19 @@ class QuoteItem extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            bool isTapped =
+                                BlocProvider.of<QuoteCubit>(context).isTapped;
+                            QuoteModel quote =
+                                BlocProvider.of<QuoteCubit>(context).quote!;
+                            if (!isTapped) {
+                              BlocProvider.of<QuoteCubit>(context)
+                                  .addToFavorite(quote);
+                            } else {
+                              BlocProvider.of<QuoteCubit>(context)
+                                  .removeFromFavorite(quote);
+                            }
+                          },
                           child: Container(
                             height: 48,
                             width: 100,
@@ -62,8 +75,8 @@ class QuoteItem extends StatelessWidget {
                                     bottomRight: Radius.circular(6)),
                                 border:
                                     Border.all(width: 2, color: kPrimaryColor)),
-                            child: const Icon(
-                              Icons.favorite_border,
+                            child: Icon(
+                              BlocProvider.of<QuoteCubit>(context).icon,
                               color: kPrimaryColor,
                               size: 32,
                             ),

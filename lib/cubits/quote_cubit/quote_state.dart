@@ -10,3 +10,5 @@ final class QuoteLoading extends QuoteState {}
 final class QuoteSuccess extends QuoteState {}
 
 final class QuoteFailure extends QuoteState {}
+
+final class QuoteFavorite extends QuoteState {}
