@@ -3,7 +3,6 @@ import 'package:quote_generator_mobile_app/views/widgets/background_container.da
 import 'package:quote_generator_mobile_app/views/widgets/custom_button.dart';
 import 'package:quote_generator_mobile_app/views/widgets/custom_text_field.dart';
 import 'package:quote_generator_mobile_app/views/widgets/favorite_quote_item.dart';
-import 'package:quote_generator_mobile_app/views/widgets/quote_item.dart';
 
 class FavoriteView extends StatelessWidget {
   const FavoriteView({super.key});
@@ -40,7 +39,7 @@ class FavoriteView extends StatelessWidget {
                   },
                 ),
                 const CustomTextField(),
-                FavoriteQuoteItem()
+                const FavoriteQuoteItem()
               ],
             ),
           )

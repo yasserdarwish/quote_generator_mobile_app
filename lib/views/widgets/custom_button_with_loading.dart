@@ -20,6 +20,7 @@ class CustomButtonWithLoading extends StatelessWidget {
           borderRadius:
               BorderRadiusDirectional.only(bottomStart: Radius.circular(6))),
       height: 48,
+      minWidth: 202,
       onPressed: onPressed,
       color: color,
       child: isLoading!

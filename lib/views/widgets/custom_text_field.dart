@@ -20,6 +20,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: TextField(
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
         onChanged: (value) {
           hasText = controller.text.isNotEmpty;
           setState(() {});

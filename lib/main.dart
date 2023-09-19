@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quote_generator_mobile_app/cubits/quote_cubit/quote_cubit.dart';
 import 'package:quote_generator_mobile_app/views/home_view.dart';
 
 void main() {
@@ -10,10 +12,13 @@ class QuoteGeneratorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'GemunuLibre'),
-      home: const HomeView(),
+    return BlocProvider(
+      create: (context) => QuoteCubit()..getQuote(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(fontFamily: 'GemunuLibre'),
+        home: const HomeView(),
+      ),
     );
   }
 }
