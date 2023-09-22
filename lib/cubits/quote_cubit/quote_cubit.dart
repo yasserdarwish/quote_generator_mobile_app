@@ -12,13 +12,13 @@ class QuoteCubit extends Cubit<QuoteState> {
 
   QuoteModel? quote;
   IconData icon = Icons.favorite_border;
-  bool isTapped = false;
   var quoteBox = Hive.box<QuoteModel>(kQuoteBox);
-
   getQuote() async {
     emit(QuoteLoading());
+
     try {
       quote = await QuoteService().getQuote();
+      changeIcon();
       emit(QuoteSuccess());
     } catch (e) {
       emit(QuoteFailure());
@@ -26,18 +26,24 @@ class QuoteCubit extends Cubit<QuoteState> {
     }
   }
 
+  changeIcon() {
+    icon = isThere() ? Icons.favorite : Icons.favorite_border;
+  }
+
+  bool isThere() {
+    return quoteBox.values.any((element) => element.id == quote?.id);
+  }
+
   addToFavorite(QuoteModel quote) async {
-    isTapped = !isTapped;
     await quoteBox.add(quote);
-    icon = Icons.favorite;
+    changeIcon();
 
     emit(QuoteFavorite());
   }
 
-  removeFromFavorite(QuoteModel quote) async {
-    isTapped = !isTapped;
+  unFavorite(QuoteModel quote) async {
     await quote.delete();
-    icon = Icons.favorite_border;
+    changeIcon();
 
     emit(QuoteFavorite());
   }

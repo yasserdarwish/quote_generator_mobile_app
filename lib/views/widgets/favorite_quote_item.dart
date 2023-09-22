@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:quote_generator_mobile_app/models/quote_model.dart';
 import 'package:quote_generator_mobile_app/views/widgets/custom_button_favorite_view.dart';
 
 class FavoriteQuoteItem extends StatelessWidget {
-  const FavoriteQuoteItem({super.key});
-
+  const FavoriteQuoteItem({super.key, this.quote});
+  final QuoteModel? quote;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,25 +15,27 @@ class FavoriteQuoteItem extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 bottomRight: Radius.circular(6),
                 bottomLeft: Radius.circular(6))),
-        child: const Padding(
-          padding: EdgeInsets.all(20),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(
-                  '“All I required to be happy was friendship and people I could admire.”',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
+                  quote?.content ?? 'Sorry No Quotes',
+                  style: const TextStyle(
+                      fontSize: 26, fontWeight: FontWeight.w400),
                 ),
                 subtitle: Text(
-                  'Christian Dior',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+                  quote?.author ?? '',
+                  style: const TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.w400),
                   textAlign: TextAlign.end,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: CustomButtonFavoriteView(),
+                padding: const EdgeInsets.only(top: 20),
+                child: CustomButtonFavoriteView(quote: quote),
               )
             ],
           ),

@@ -55,16 +55,16 @@ class QuoteItem extends StatelessWidget {
                         const SizedBox(width: 10),
                         GestureDetector(
                           onTap: () {
-                            bool isTapped =
-                                BlocProvider.of<QuoteCubit>(context).isTapped;
                             QuoteModel quote =
                                 BlocProvider.of<QuoteCubit>(context).quote!;
-                            if (!isTapped) {
+
+                            if (!BlocProvider.of<QuoteCubit>(context)
+                                .isThere()) {
                               BlocProvider.of<QuoteCubit>(context)
                                   .addToFavorite(quote);
                             } else {
                               BlocProvider.of<QuoteCubit>(context)
-                                  .removeFromFavorite(quote);
+                                  .unFavorite(quote);
                             }
                           },
                           child: Container(

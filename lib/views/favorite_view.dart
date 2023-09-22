@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quote_generator_mobile_app/cubits/quote_cubit/quote_cubit.dart';
 import 'package:quote_generator_mobile_app/views/widgets/background_container.dart';
 import 'package:quote_generator_mobile_app/views/widgets/custom_button.dart';
 import 'package:quote_generator_mobile_app/views/widgets/custom_text_field.dart';
@@ -39,7 +41,23 @@ class FavoriteView extends StatelessWidget {
                   },
                 ),
                 const CustomTextField(),
-                const FavoriteQuoteItem()
+                BlocBuilder<QuoteCubit, QuoteState>(
+                  builder: (context, state) {
+                    return Expanded(
+                      child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: BlocProvider.of<QuoteCubit>(context)
+                              .getFavoriteCount(),
+                          itemBuilder: (context, index) {
+                            return FavoriteQuoteItem(
+                              quote: BlocProvider.of<QuoteCubit>(context)
+                                  .quoteBox
+                                  .getAt(index),
+                            );
+                          }),
+                    );
+                  },
+                )
               ],
             ),
           )
