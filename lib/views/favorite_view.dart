@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quote_generator_mobile_app/cubits/quote_cubit/quote_cubit.dart';
 import 'package:quote_generator_mobile_app/views/widgets/background_container.dart';
 import 'package:quote_generator_mobile_app/views/widgets/custom_button.dart';
 import 'package:quote_generator_mobile_app/views/widgets/custom_text_field.dart';
-import 'package:quote_generator_mobile_app/views/widgets/favorite_quote_item.dart';
+import 'package:quote_generator_mobile_app/views/widgets/quotes_list_view.dart';
 
 class FavoriteView extends StatelessWidget {
   const FavoriteView({super.key});
@@ -20,7 +18,6 @@ class FavoriteView extends StatelessWidget {
             child: Column(
               children: [
                 CustomButton(
-                  color: const Color(0xffcdb7f4),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -41,22 +38,7 @@ class FavoriteView extends StatelessWidget {
                   },
                 ),
                 const CustomTextField(),
-                BlocBuilder<QuoteCubit, QuoteState>(
-                  builder: (context, state) {
-                    return Expanded(
-                      child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: BlocProvider.of<QuoteCubit>(context)
-                              .searchedList
-                              .length,
-                          itemBuilder: (context, index) {
-                            return FavoriteQuoteItem(
-                                quote: BlocProvider.of<QuoteCubit>(context)
-                                    .searchedList[index]);
-                          }),
-                    );
-                  },
-                )
+                const QuotesListView()
               ],
             ),
           )

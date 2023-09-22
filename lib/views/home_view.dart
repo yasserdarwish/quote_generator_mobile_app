@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quote_generator_mobile_app/views/widgets/background_container.dart';
-import 'package:quote_generator_mobile_app/views/widgets/custom_badge.dart';
+import 'package:quote_generator_mobile_app/views/widgets/favorite_view_button.dart';
 import 'package:quote_generator_mobile_app/views/widgets/quote_item.dart';
 
 class HomeView extends StatelessWidget {
@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomBadge(),
+                FavoriteViewButton(),
                 QuoteItem(),
               ],
             ),

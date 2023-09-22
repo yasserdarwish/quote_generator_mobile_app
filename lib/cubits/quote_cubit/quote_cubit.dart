@@ -39,6 +39,7 @@ class QuoteCubit extends Cubit<QuoteState> {
   addToFavorite(QuoteModel quote) async {
     await quoteBox.add(quote);
     changeIcon();
+    searchedList = quoteBox.values.toList();
 
     emit(QuoteFavorite());
   }

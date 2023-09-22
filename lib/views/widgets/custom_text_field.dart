@@ -28,7 +28,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onChanged: (value) {
           hasText = controller.text.isNotEmpty;
           BlocProvider.of<QuoteCubit>(context).filterSearchResults(value);
-          print(BlocProvider.of<QuoteCubit>(context).searchedList.length);
+
           setState(() {});
         },
         controller: controller,

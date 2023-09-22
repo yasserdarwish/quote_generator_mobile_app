@@ -5,12 +5,11 @@ class CustomButton extends StatelessWidget {
     super.key,
     this.onPressed,
     this.text,
-    this.color,
     this.child,
   });
   final void Function()? onPressed;
   final String? text;
-  final Color? color;
+
   final Widget? child;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class CustomButton extends StatelessWidget {
         height: 44,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         onPressed: onPressed,
-        color: color,
+        color: const Color(0xffcdb7f4),
         child: text == null
             ? child
             : Text(
