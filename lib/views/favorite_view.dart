@@ -47,13 +47,12 @@ class FavoriteView extends StatelessWidget {
                       child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
                           itemCount: BlocProvider.of<QuoteCubit>(context)
-                              .getFavoriteCount(),
+                              .searchedList
+                              .length,
                           itemBuilder: (context, index) {
                             return FavoriteQuoteItem(
-                              quote: BlocProvider.of<QuoteCubit>(context)
-                                  .quoteBox
-                                  .getAt(index),
-                            );
+                                quote: BlocProvider.of<QuoteCubit>(context)
+                                    .searchedList[index]);
                           }),
                     );
                   },

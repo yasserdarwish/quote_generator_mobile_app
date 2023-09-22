@@ -19,7 +19,9 @@ class QuoteGeneratorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => QuoteCubit()..getQuote(),
+      create: (context) => QuoteCubit()
+        ..getQuote()
+        ..favoriteQuoteList(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'GemunuLibre'),

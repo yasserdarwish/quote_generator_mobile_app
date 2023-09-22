@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quote_generator_mobile_app/cubits/quote_cubit/quote_cubit.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
@@ -25,6 +27,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         },
         onChanged: (value) {
           hasText = controller.text.isNotEmpty;
+          BlocProvider.of<QuoteCubit>(context).filterSearchResults(value);
+          print(BlocProvider.of<QuoteCubit>(context).searchedList.length);
           setState(() {});
         },
         controller: controller,
@@ -33,6 +37,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ? IconButton(
                     onPressed: () {
                       controller.clear();
+                      BlocProvider.of<QuoteCubit>(context)
+                          .filterSearchResults(controller.text);
+                      setState(() {});
                     },
                     icon: SvgPicture.asset(
                       'assets/icons/X Icon.svg',

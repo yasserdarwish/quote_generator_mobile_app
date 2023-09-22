@@ -13,6 +13,8 @@ class QuoteCubit extends Cubit<QuoteState> {
   QuoteModel? quote;
   IconData icon = Icons.favorite_border;
   var quoteBox = Hive.box<QuoteModel>(kQuoteBox);
+  List<QuoteModel> searchedList = [];
+
   getQuote() async {
     emit(QuoteLoading());
 
@@ -41,14 +43,26 @@ class QuoteCubit extends Cubit<QuoteState> {
     emit(QuoteFavorite());
   }
 
+  favoriteQuoteList() {
+    searchedList = quoteBox.values.toList();
+  }
+
   unFavorite(QuoteModel quote) async {
     await quote.delete();
     changeIcon();
-
+    searchedList = quoteBox.values.toList();
     emit(QuoteFavorite());
   }
 
   int getFavoriteCount() {
     return quoteBox.length;
+  }
+
+  void filterSearchResults(String query) {
+    searchedList = quoteBox.values
+        .where((element) =>
+            element.content.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    emit(QuoteFavorite());
   }
 }
